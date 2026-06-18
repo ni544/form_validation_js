@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="form">
+    <input type="text" placeholder="Name">
+    <p class="error" style="color: red;"></p>
+
+    <input type="text" placeholder="Email">
+    <p class="error" style="color: red;"></p>
+
+    <input id="password"  type="password" placeholder="password">
+    <p class="passError" style="color: red;"></p>
+
+    <button>Submit</button>
+</form>
+
+<script>
+const form = document.getElementById("form");
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const inputs = document.querySelectorAll('input[type="text"]');
+    const errors = document.querySelectorAll(".error");
+
+    inputs.forEach((input, index) => {
+        errors[index].textContent =
+            input.value.trim() === "" ? "Fill this" : "";
+    });
+
+    const pass = document.getElementById("password");
+    const passError = document.querySelector(".passError");
+
+    if (pass.value.trim() === "") {
+        passError.textContent = "Fill this";
+    } else if (pass.value.length < 6) {
+        passError.textContent = "Password must be at least 6 characters";
+    } else {
+        passError.textContent = "";
+    }
+});
+</script>
+
+</body>
+</html>
